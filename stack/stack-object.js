@@ -6,10 +6,11 @@
  * 支持的操作实例的方法
  * 1. push(element(s))  向栈顶添加一个元素（或多个）
  * 2. pop()             从栈顶删除一个元素，并将该元素返回
- * 3. size()            获取栈内的元素数量
- * 4. clear()           清空栈内元素
- * 5. isEmpty()         检查栈是否为空
- * 6. toString()        打印所有栈内元素，使用逗号分割
+ * 3. peek()            查看栈顶的元素
+ * 4. size()            获取栈内的元素数量
+ * 5. clear()           清空栈内元素
+ * 6. isEmpty()         检查栈是否为空
+ * 7. toString()        打印所有栈内元素，使用逗号分割
  */
 class Stack {
   constructor() {
@@ -26,10 +27,20 @@ class Stack {
   }
 
   pop() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
     this.count--;
     let item = this.items[this.count];
     delete this.items[this.count];
     return item;
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.items[this.count - 1];
   }
 
   size() {
