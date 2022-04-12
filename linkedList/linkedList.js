@@ -95,7 +95,7 @@ class LinkedList {
     for (let i = 0; i < index; i++) {
       cur = cur.next;
     }
-    return cur.val;
+    return cur;
   }
 
   removeAt(index) {
@@ -105,12 +105,8 @@ class LinkedList {
       this.head = this.head.next;
     }
     else {
-      let pre = this.head;
-      let cur = this.head.next;
-      for (let i = 1; i < index; i++) {
-        pre = cur;
-        cur = cur.next;
-      }
+      let pre = this.getValueAt(index - 1);
+      let cur = pre.next;
       pre.next = cur.next;
   
       // 如果移除的是尾部结点，则将尾结点指向新的尾部节点
@@ -150,7 +146,20 @@ class LinkedList {
     return hasRemove;
   }
 
-  // TODO
+  indexOf(val) {
+    let index = 0;
+    let cur = this.head;
+
+    while(cur) {
+      if (this.equalsFn(cur.val, val)) {
+        return index;
+      }
+      cur = cur.next;
+      index++;
+    }
+
+    return -1;
+  }
 
   toString() {
     if (this.isEmpty()) return '';

@@ -31,10 +31,8 @@ console.log('size:', linkedList.size());
 divider();
 
 console.log('removeAt 0:', linkedList.removeAt(0));
-console.log(linkedList);
 linkedList.print();
 console.log('removeAt size:', linkedList.removeAt(linkedList.size() - 1));
-console.log(linkedList);
 linkedList.print();
 divider();
 
@@ -44,11 +42,12 @@ linkedList.push(8);
 linkedList.push(1);
 linkedList.print();
 console.log('remove:', linkedList.remove(5));
-console.log(linkedList);
 linkedList.print();
 console.log('remove:', linkedList.remove(6));
-console.log(linkedList);
 linkedList.print();
 console.log('remove:', linkedList.remove(1));
-console.log(linkedList);
 linkedList.print();
+divider();
+
+console.log('indexOf:', linkedList.indexOf(18));
+console.log('indexOf:', linkedList.indexOf(12));
