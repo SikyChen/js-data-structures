@@ -16,16 +16,16 @@ divider();
 console.log('insert 3:', linkedList.insert(3, 0));
 linkedList.print();
 console.log('size:', linkedList.size());
-console.log('getValueAt 3:', linkedList.getValueAt(3))
-console.log('getValueAt 2:', linkedList.getValueAt(2))
+console.log('getElementAt 3:', linkedList.getElementAt(3))
+console.log('getElementAt 2:', linkedList.getElementAt(2))
 console.log('insert 9:', linkedList.insert(9, 5));
 linkedList.print();
 console.log('size:', linkedList.size());
 divider();
 
-console.log('getValueAt 4:', linkedList.getValueAt(4));
+console.log('getElementAt 4:', linkedList.getElementAt(4));
 console.log('removeAt 4:', linkedList.removeAt(4));
-console.log('getValueAt 4:', linkedList.getValueAt(4));
+console.log('getElementAt 4:', linkedList.getElementAt(4));
 linkedList.print();
 console.log('size:', linkedList.size());
 divider();

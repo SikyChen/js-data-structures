@@ -1,4 +1,4 @@
-const Node = require("./node");
+const { Node } = require("./modules/node");
 
 /**
  * LinkedList 类
@@ -6,18 +6,18 @@ const Node = require("./node");
  * 链表：一种有序的存储数据的结构，不同于数组，可以不占用连续的内存
  * 
  * 支持的操作实例的方法
- * 1. push(val)           // 向链表尾部添加一个元素
- * 2. insert(val, index)  // 向链表的指定位置添加一个新元素
- * 3. getValueAt(index)   // 返回链表指定位置的元素，如果不存在就返回undefined
- * 4. removeAt(index)     // 移除链表指定位置的元素
- * 5. remove(val)         // 移除链表中的元素
- * 6. indexOf(val)        // 返回元素在链表中的索引
- * 7. getHead()           // 获取链表第一个元素
- * 8. getTail()           // 获取链表最后一个元素
- * 9. isEmpty()           // 返回链表是否为空
- * 10. size()             // 返回链表长度
- * 11. toString()         // 将链表转为字符串(序列化)
- * 12. print()            // 打印链表字符串
+ * 1. push(val)           向链表尾部添加一个元素
+ * 2. insert(val, index)  向链表的指定位置添加一个新元素
+ * 3. getElementAt(index) 返回链表指定位置的元素，如果不存在就返回undefined
+ * 4. removeAt(index)     移除链表指定位置的元素
+ * 5. remove(val)         移除链表中的元素
+ * 6. indexOf(val)        返回元素在链表中的索引
+ * 7. getHead()           获取链表第一个元素
+ * 8. getTail()           获取链表最后一个元素
+ * 9. isEmpty()           返回链表是否为空
+ * 10. size()             返回链表长度
+ * 11. toString()         将链表转为字符串(序列化)
+ * 12. print()            打印链表字符串
  */
 class LinkedList {
   constructor(equalsFn = this.defaultEqualsFn) {
@@ -88,7 +88,7 @@ class LinkedList {
     return true;
   }
 
-  getValueAt(index) {
+  getElementAt(index) {
     if (index < 0 || index >= this.count) return undefined;
 
     let cur = this.head;
@@ -100,12 +100,14 @@ class LinkedList {
 
   removeAt(index) {
     if (index < 0 || index >= this.count) return false;
+    let removeElement;
 
     if (index === 0) {
+      removeElement = this.head;
       this.head = this.head.next;
     }
     else {
-      let pre = this.getValueAt(index - 1);
+      let pre = this.getElementAt(index - 1);
       let cur = pre.next;
       pre.next = cur.next;
   
@@ -113,9 +115,10 @@ class LinkedList {
       if (this.tail === cur) {
         this.tail = pre;
       }
+      removeElement = cur;
     }
     this.count--;
-    return true;
+    return removeElement.val;
   }
 
   remove(val) {
