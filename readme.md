@@ -11,3 +11,9 @@ Realize some typical data-structures by Javascript.
 2. Deque: Double-ended queue.
 3. A function hotPotato.
 4. A function palindromeChecker.
+
+## LinkedList
+1. LinkedList.
+2. DoublyLinkedList.
+3. SortedLinkedList.
+4. Realize a Stack class by DoublyLinkedList.
