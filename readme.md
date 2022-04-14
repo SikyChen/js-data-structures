@@ -17,3 +17,7 @@ Realize some typical data-structures by Javascript.
 2. DoublyLinkedList.
 3. SortedLinkedList.
 4. Realize a Stack class by DoublyLinkedList.
+
+## Set
+1. Realize by Object.
+2. Original Set class with set operation extensions.
