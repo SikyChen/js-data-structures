@@ -21,6 +21,10 @@ const ValuePair = require("./ValuePair");
  * - 当给一个 hashCode 的位置存储数据时，创建一个链表，将数据存入链表中
  * - 如果下次遇到相同的 hashCode 需要存储数据，则遍历该链表到尾部，将数据存入新的链表节点中
  * 
+ * PS: 相同 hashCode 使用链表存储，如果数据量比较大，那么查询起来也会比较慢，拓展解决思路：
+ *     1. 可以将链表换成 平衡搜索二叉树(BST) ，这样查询速度又会快一些
+ *     2. 可以将链表换成使用另一个 hash 函数的 hashMap，这样相同 hashCode 的数据，在第二层 map 中又不相同了，可以接近两次 O(1) 的速度
+ * 
  * 需重写 增删查 的功能
  */
 module.exports = class HashMapSeparateChaining extends HashMap {
@@ -66,9 +70,6 @@ module.exports = class HashMapSeparateChaining extends HashMap {
     }
     else {
       let valuePair = linkedList.get(key);
-      if (key === 'Sue') {
-        console.log('>>>', valuePair);
-      }
       return valuePair ? valuePair.toString() : undefined;
     }
   }
