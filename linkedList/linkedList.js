@@ -88,6 +88,18 @@ class LinkedList {
     return true;
   }
 
+  get(val) {
+    let cur = this.head;
+    while(cur) {
+      if (this.equalsFn(cur.val, val)) {
+        return cur.val;
+      }
+      cur = cur.next;
+    }
+
+    return undefined;
+  }
+
   getElementAt(index) {
     if (index < 0 || index >= this.count) return undefined;
 
@@ -126,7 +138,7 @@ class LinkedList {
     let pre = new Node(0);
     let cur = this.head;
     while(cur) {
-      if (this.equalsFn(val, cur.val)) {
+      if (this.equalsFn(cur.val, val)) {
         pre.next = cur.next;
 
         if (this.head === cur) {
