@@ -1,4 +1,4 @@
-const { defaultCompareFn, COMPARE } = require("./modules/compare");
+const { defaultCompareFn, COMPARE } = require("./../utils/compare");
 const { Node } = require("./modules/node");
 
 /**
