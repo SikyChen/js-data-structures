@@ -21,3 +21,25 @@ Realize some typical data-structures by Javascript.
 ## Set
 1. Realize by Object.
 2. Original Set class with set operation extensions.
+
+## Dictionary & HashMap
+1. Dictionary
+2. HashMap
+3. HashTableSeparateChaining
+
+## Recursive
+1. Recursive
+2. Factorial
+3. Fibonacci & memory
+
+## BinaryTree
+1. BinaryTree
+2. BinarySearchTree
+
+## Heap
+1. Heap
+2. MinHeap
+3. MaxHeap
+4. HeapSort
+
+## Graph
