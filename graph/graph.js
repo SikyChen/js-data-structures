@@ -1,4 +1,6 @@
 const Queue = require('./../queue/queue');
+const dijkstra = require('./dijkstra');
+const getShortestPathByBFS = require('./getShortestPathByBFS');
 
 /**
  * 图
@@ -33,22 +35,22 @@ module.exports = class Graph {
   addVertex(v) {
     if (!this.vertices.includes(v)) {
       this.vertices.push(v);
-      this.adjList.set(v, new Set());
+      this.adjList.set(v, new Map());
       return true;
     }
     return false;
   }
 
   /** 向图中添加边 */
-  addEdge(v, w) {
+  addEdge(v, w, distance = 1) {
     // 若没有两个顶点，就添加顶点
     this.addVertex(v);
     this.addVertex(w);
-    // 将 w 顶点加入 v 的邻接表中
-    this.adjList.get(v).add(w);
-    // 若无向图，则将 v 顶点也加入 w 的邻接表中
+    // 将 w 顶点加入 v 的邻接表中，并设置权重
+    this.adjList.get(v).set(w, distance);
+    // 若无向图，则将 v 顶点也加入 w 的邻接表中，并设置权重
     if (!this.isDirected) {
-      this.adjList.get(w).add(v);
+      this.adjList.get(w).set(v, distance);
     }
   }
 
@@ -67,8 +69,9 @@ module.exports = class Graph {
     console.log('Graph Print:')
     this.vertices.forEach(v => {
       let str = `${v} ->`;
-      this.adjList.get(v).forEach(w => {
-        str += ` ${w}`;
+      new Map().keys
+      this.adjList.get(v).forEach((d, w) => {
+        str += ` ${w}(${d})`;
       })
       console.log(str);
     })
@@ -94,7 +97,7 @@ module.exports = class Graph {
 
     while (!queue.isEmpty()) {
       const v = queue.dequeue();
-      this.adjList.get(v).forEach(w => {
+      this.adjList.get(v).forEach((d, w) => {
         // 将未处理过的相邻顶点加入待处理队列
         if (!enqueuedVertices.has(w)) {
           queue.enqueue(w);
@@ -104,63 +107,6 @@ module.exports = class Graph {
       });
       // 使用顶点 v 作为参数执行 callback
       typeof callback === 'function' && callback(v);
-    }
-  }
-
-  /**
-   * 根据BFS算法查找每个点跟源点的最短路径(以边数记，找最少边的路径)
-   * @param {Graph} graph 
-   * @param {v} startVertex 
-   * @returns {Object} {distances, predecessors}
-   */
-  static getShortestPath = (graph, startVertex) => {
-    if (!graph || !startVertex) return false;
-
-    const vertices = graph.getVertices();
-    const adjList = graph.getAdjList();
-
-    if (!vertices.includes(startVertex)) return false;
-
-    const distances = {};
-    const predecessors = {};
-    vertices.forEach(v => {
-      distances[v] = 0;
-      predecessors[v] = null;
-    })
-
-    const queue = new Queue();
-    const enqueuedVertices = new Set();
-
-    queue.enqueue(startVertex);
-    enqueuedVertices.add(startVertex);
-
-    while (!queue.isEmpty()) {
-      const v = queue.dequeue();
-      adjList.get(v).forEach(w => {
-        if (!enqueuedVertices.has(w)) {
-          distances[w] = distances[v] + 1;
-          predecessors[w] = v;
-          queue.enqueue(w);
-          enqueuedVertices.add(w);
-        }
-      });
-    }
-
-    const paths = {};
-    vertices.forEach(v => {
-      const path = [v];
-      let cur = v;
-      while(predecessors[cur]) {
-        path.push(predecessors[cur]);
-        cur = predecessors[cur];
-      }
-      paths[v] = path.reverse().join('-');
-    })
-
-    return {
-      distances,
-      predecessors,
-      paths,
     }
   }
 
@@ -187,9 +133,9 @@ module.exports = class Graph {
       visitedVetices.add(v);
       typeof preCallback === 'function' && preCallback(v);
 
-      adjList.get(v).forEach(w => {
+      adjList.get(v).forEach((d, w) => {
         if (!visitedVetices.has(w)) {
-          typeof inCallback === 'function' && inCallback(v, w);
+          typeof inCallback === 'function' && inCallback(v, w, d);
           process(w);
         }
       })
@@ -197,4 +143,10 @@ module.exports = class Graph {
       typeof postCallback === 'function' && postCallback(v);
     }
   }
+
+  // 根据 BFS 查询最短路径（以边数量计）
+  static getShortestPathByBFS = getShortestPathByBFS;
+
+  // dijkstra 算法，单源最短路径算法
+  static dijkstra = dijkstra;
 }
