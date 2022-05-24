@@ -97,3 +97,8 @@ graph3.addEdge('E', 'F', 2);
 graph3.addEdge('D', 'F', 2);
 graph3.print();
 console.log('dijkstra:', Graph.dijkstra(graph3, 'A'));
+divider();
+
+console.log('adjList', graph.adjList);
+console.log('edges', graph.edges);
+console.log('kruskal:', Graph.kruskal(graph));

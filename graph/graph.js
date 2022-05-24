@@ -1,6 +1,7 @@
 const Queue = require('./../queue/queue');
 const dijkstra = require('./dijkstra');
 const getShortestPathByBFS = require('./getShortestPathByBFS');
+const kruskal = require('./kruskal');
 
 /**
  * 图
@@ -19,10 +20,12 @@ const getShortestPathByBFS = require('./getShortestPathByBFS');
  */
 module.exports = class Graph {
   constructor(isDirected = false) {
-    // 是否有向图
+    // 是否有向图，默认为无向图
     this.isDirected = isDirected;
     // 所有顶点名字
     this.vertices = [];
+    // 所有边及其权重
+    this.edges = new Map();
     /**
      * 邻接表
      * key: 顶点名字
@@ -48,6 +51,7 @@ module.exports = class Graph {
     this.addVertex(w);
     // 将 w 顶点加入 v 的邻接表中，并设置权重
     this.adjList.get(v).set(w, distance);
+    this.edges.set([v, w], distance);
     // 若无向图，则将 v 顶点也加入 w 的邻接表中，并设置权重
     if (!this.isDirected) {
       this.adjList.get(w).set(v, distance);
@@ -80,7 +84,7 @@ module.exports = class Graph {
   /**
    * 宽度优先遍历
    * 支持无向图，有向图可能无法遍历到所有顶点
-   * @param {v} startVertex 遍历七点
+   * @param {v} startVertex 遍历起点
    * @param {Function} callback 回调
    * @returns void
    */
@@ -149,4 +153,7 @@ module.exports = class Graph {
 
   // dijkstra 算法，单源最短路径算法
   static dijkstra = dijkstra;
+
+  // kruskal 算法，求解最小生成树
+  static kruskal = (graph) => kruskal(graph, Graph);
 }

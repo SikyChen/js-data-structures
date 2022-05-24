@@ -43,3 +43,7 @@ Realize some typical data-structures by Javascript.
 4. HeapSort
 
 ## Graph
+1. Graph
+2. get shortest path by BFS
+3. Dijkstra
+4. Kruskal
