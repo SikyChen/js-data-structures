@@ -99,6 +99,16 @@ graph3.print();
 console.log('dijkstra:', Graph.dijkstra(graph3, 'A'));
 divider();
 
+const graph4 = new Graph(true);
+graph4.addEdge('A', 'B', 3);
+graph4.addEdge('A', 'C', 2);
+graph4.addEdge('B', 'D', 4);
+graph4.addEdge('C', 'E', 2);
+graph4.addEdge('C', 'F', 4);
+graph4.print();
+console.log('dijkstra:', Graph.dijkstra(graph4, 'A'));
+divider();
+
 console.log('adjList', graph.adjList);
 console.log('edges', graph.edges);
 console.log('kruskal:', Graph.kruskal(graph));
