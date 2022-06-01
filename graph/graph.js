@@ -2,6 +2,7 @@ const Queue = require('./../queue/queue');
 const dijkstra = require('./dijkstra');
 const getShortestPathByBFS = require('./getShortestPathByBFS');
 const kruskal = require('./kruskal');
+const prim = require('./prim');
 
 /**
  * 图
@@ -156,4 +157,7 @@ module.exports = class Graph {
 
   // kruskal 算法，求解最小生成树
   static kruskal = (graph) => kruskal(graph, Graph);
+
+  // prim 算法，求解最小生成树
+  static prim = (graph) => prim(graph, Graph);
 }

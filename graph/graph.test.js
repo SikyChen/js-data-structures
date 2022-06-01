@@ -112,3 +112,7 @@ divider();
 console.log('adjList', graph.adjList);
 console.log('edges', graph.edges);
 console.log('kruskal:', Graph.kruskal(graph));
+divider();
+
+console.log('prim:', Graph.prim(graph));
+divider();

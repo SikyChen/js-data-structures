@@ -47,3 +47,4 @@ Realize some typical data-structures by Javascript.
 2. get shortest path by BFS
 3. Dijkstra
 4. Kruskal
+5. Prim
