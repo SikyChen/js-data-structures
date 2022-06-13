@@ -51,3 +51,6 @@ Realize some typical data-structures by Javascript.
 
 ## Sort
 1. BubbleSort
+2. SelectionSort
+3. InsertionSort
+4. MergeSort

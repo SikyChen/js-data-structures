@@ -1,5 +1,8 @@
 const { divider } = require("../utils");
 const bubbleSort = require("./bubbleSort");
+const insertionSort = require("./insertionSort");
+const mergeSort = require("./mergeSort");
+const selectionSort = require("./selectionSort");
 
 const originArray = [];
 for(let i=0; i<10000; i++) {
@@ -33,3 +36,15 @@ function inspector(sorter) {
 divider();
 console.log('bubbleSort: ');
 inspector(bubbleSort);
+
+divider();
+console.log('insertionSort: ');
+inspector(insertionSort);
+
+divider();
+console.log('selectionSort: ');
+inspector(selectionSort);
+
+divider();
+console.log('mergeSort: ');
+inspector(mergeSort);
