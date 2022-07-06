@@ -1,5 +1,6 @@
 const { divider } = require("../utils");
 const bubbleSort = require("./bubbleSort");
+const bucketSort = require("./bucketSort");
 const countingSort = require("./countingSort");
 const insertionSort = require("./insertionSort");
 const mergeSort = require("./mergeSort");
@@ -61,4 +62,8 @@ inspector(quickSort);
 
 divider();
 console.log('countingSort: ');
-inspector(countingSort, true);
+inspector(countingSort);
+
+divider();
+console.log('bucketSort: ');
+inspector(bucketSort);

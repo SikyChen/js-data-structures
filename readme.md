@@ -56,3 +56,4 @@ Realize some typical data-structures by Javascript.
 4. MergeSort
 5. QuickSort
 6. CountingSort
+7. BucketSort
