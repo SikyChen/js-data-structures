@@ -60,3 +60,6 @@ Realize some typical data-structures by Javascript.
 
 ## RandomSort
 1. Shuffle
+
+## DC
+1. binarySearch
