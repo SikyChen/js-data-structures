@@ -19,20 +19,27 @@
  * - 若 s1 和 s2 开头的第一个字符相同，则该字符一定在 lcs 当中
  */
 function longestCommonSubsequence(s1, s2) {
+  const cache = {};
   
   const process = (s1, m, s2, n) => {
     // base case
     if (m === s1.length) return 0;
     if (n === s2.length) return 0;
 
+    let cacheKey = `${m}-${n}`;
+    if (cache[cacheKey]) return cache[cacheKey];
+
     if (s1[m - 1] === s2[n - 1]) {
-      return 1 + process(s1, m + 1, s2, n + 1);
+      cache[cacheKey] = 1 + process(s1, m + 1, s2, n + 1);
+    }
+    else {
+      const hasNoM = process(s1, m + 1, s2, n);
+      const hasNoN = process(s1, m, s2, n + 1);
+      
+      cache[cacheKey] = Math.max(hasNoM, hasNoN);
     }
 
-    const hasNoM = process(s1, m + 1, s2, n);
-    const hasNoN = process(s1, m, s2, n + 1);
-
-    return Math.max(hasNoM, hasNoN);
+    return cache[cacheKey];
   }
 
   return process(s1, 0, s2, 0);
