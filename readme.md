@@ -67,3 +67,4 @@ Realize some typical data-structures by Javascript.
 ## DP
 1. minCoinChange
 2. knapSack
+3. lcs
