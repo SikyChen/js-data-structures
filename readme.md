@@ -68,3 +68,6 @@ Realize some typical data-structures by Javascript.
 1. minCoinChange
 2. knapSack
 3. lcs
+
+## BackTracking
+1. ratInMaze

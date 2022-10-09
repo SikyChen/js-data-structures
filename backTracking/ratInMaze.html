@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rat In Maze</title>
+  <style>
+    #maze {
+      position: relative;
+    }
+
+    #maze * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      width: 51px;
+      height: 51px;
+      margin: 0 -1px -1px 0;
+      border: 1px solid #bbb;
+      transition: 1s;
+    }
+
+    .cell.stone {
+      background-color: #666;
+    }
+
+    .cell.path {
+      background-color: #eee;
+    }
+
+    #rat {
+      position: absolute;
+      width: 49px;
+      height: 49px;
+      margin: 1px 0 0 1px;
+      background-color: #aaa;
+      border: 1px solid #aaa;
+      transition: 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="maze">
+    <div id="map"></div>
+    <div id="rat"></div>
+  </div>
+
+  <script src="./ratInMaze.js"></script>
+  <script>
+    /** 生成迷宫 */
+    function generateMaze(maze) {
+      if (!maze || !maze.length || !maze[0].length) return false;
+
+      const mazeSection = document.querySelector('#map');
+      mazeSection.innerHTML = null;
+
+      const y = maze.length;
+      const x = maze[0].length;
+
+      maze.forEach(xs => {
+        const row = document.createElement('div');
+        row.className = 'row';
+
+        xs.forEach(x => {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          if (x === 0) {
+            cell.className += ' stone';
+          }
+          if (x === 2) {
+            cell.className += ' path';
+          }
+          row.appendChild(cell);
+        });
+
+        mazeSection.appendChild(row);
+      })
+    }
+  </script>
+  <script>
+    const mazeData = [
+      [1, 0, 1, 1, 1],
+      [1, 0, 1, 0, 1],
+      [1, 1, 1, 0, 1],
+      [0, 1, 0, 1, 1],
+      [0, 1, 0, 1, 1]
+    ];
+
+    const startX = 0; 
+    const startY = 0; 
+    const endX = 4; 
+    const endY = 2; 
+
+    // const startX = 4; 
+    // const startY = 1; 
+    // const endX = 4; 
+    // const endY = 3; 
+
+    generateMaze(mazeData);
+
+    const pathArray = [];
+    const res = ratInMaze(JSON.parse(JSON.stringify(mazeData)), startX, startY, endX, endY, (x, y, maze) => {
+      pathArray.push([x, y, JSON.parse(JSON.stringify(maze))]);
+    });
+    if (res === null) {
+      console.log('无法到达！');
+    }
+    
+    let rat = document.querySelector('#rat');
+    
+    let step = 0;
+    let timer = setInterval(() => {
+
+      if (pathArray[step]) {
+        const [x, y, mazeData] = pathArray[step];
+  
+        rat.style.top = x * 50 + 'px';
+        rat.style.left = y * 50 + 'px';
+        
+        step++;
+      }
+
+      if (step >= pathArray.length) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }, 300);
+  </script>
+</body>
+
+</html>
