@@ -20,13 +20,14 @@
  */
 function longestCommonSubsequence(s1, s2) {
   const cache = {};
+  const getCacheKey = (m, n) => (m + '-' + n);
   
   const process = (s1, m, s2, n) => {
     // base case
     if (m === s1.length) return 0;
     if (n === s2.length) return 0;
 
-    let cacheKey = `${m}-${n}`;
+    let cacheKey = getCacheKey(m, n);
     if (cache[cacheKey]) return cache[cacheKey];
 
     if (s1[m - 1] === s2[n - 1]) {
