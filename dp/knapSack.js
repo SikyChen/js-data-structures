@@ -82,11 +82,13 @@ function knapSack(W, N, weights, values) {
 }
 
 
-// TODO 背包问题的递归解法
-
 // test
-const values = [3, 4, 5],
-  weights = [2, 3, 4],
-  W = 5,
+// const values = [3, 4, 5],
+//   weights = [2, 3, 4],
+//   W = 5,
+//   N = values.length;
+const values = [6, 3, 5, 4, 6],
+  weights = [2, 2, 6, 5, 4],
+  W = 10,
   N = values.length;
 console.log('总价值：', knapSack(W, N, weights, values));
