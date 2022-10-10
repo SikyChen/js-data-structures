@@ -71,3 +71,4 @@ Realize some typical data-structures by Javascript.
 
 ## BackTracking
 1. ratInMaze
+2. solveSudoku
